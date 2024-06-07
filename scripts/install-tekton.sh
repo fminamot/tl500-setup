@@ -29,7 +29,7 @@ git push
 # GitLab>pet-battle-api>settings>integrationに指定するリンク
 echo https://$(oc -n ${TEAM_NAME}-ci-cd get route webhook --template='{{ .spec.host }}')
 
-# cd /projects/pet-battle-api
+cd /projects/pet-battle-api
 mvn -ntp versions:set -DnewVersion=1.3.1
 
 cd /projects/pet-battle-api
