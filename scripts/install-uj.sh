@@ -12,39 +12,12 @@
 # tech-exerciseという新規internalプロジェクト
 #
 
-echo "********** Basic Settings"
-
-# 実際に払い出された各種情報をここに設定する
-export USER_NAME=user1
-export PASSWORD=<pass>
-export TEAM_NAME=team1
-export CLUSTER_DOMAIN=<domain>
-export GIT_SERVER="gitlab-ce.${CLUSTER_DOMAIN}"
-export GITLAB_USER=${USER_NAME}
-export GITLAB_PASSWORD=${PASSWORD}
-
-echo export TEAM_NAME=$TEAM_NAME | tee -a ~/.bashrc -a ~/.zshrc
-echo export CLUSTER_DOMAIN=$CLUSTER_DOMAIN | tee -a ~/.bashrc -a ~/.zshrc
-echo export GIT_SERVER=$GIT_SERVER | tee -a ~/.bashrc -a ~/.zshrc
-#source ~/.zshrc
-
-echo "TEAM_NAME=${TEAM_NAME}"
-echo "CLUSTER_DOMAIN=${CLUSTER_DOMAIN}"
-echo "GIT_SERVER${GIT_SERVER}"
-echo "GITLAB_USER=${GITLAB_USER}"
-echo "GITLAB_PASSWORD=${GITLAB_PASSWORD}"
+echo "********** Argo CD"
 
 # チーム用OCPプロジェクト作成
-oc login --server=https://api.${CLUSTER_DOMAIN##apps.}:6443 -u $USER_NAME -p $PASSWORD 
+oc login --server=https://api.${CLUSTER_DOMAIN##apps.}:6443 -u $USER_NAME -p $PASSWORD
 oc new-project ${TEAM_NAME}-ci-cd
 
-echo "********** GitLab PAT"
-
-gitlab_pat
-
-echo "GITLAB_PAT=${GITLAB_PAT}"
-
-echo "********** Argo CD"
 
 helm repo add redhat-cop https://redhat-cop.github.io/helm-charts
 
