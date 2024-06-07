@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/zsh -xe
 
 cat << EOF > /tmp/sonarqube-auth.yaml
 apiVersion: v1

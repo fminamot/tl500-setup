@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/zsh -xe 
 # 設定内容
 # ・Keycloak
 # ・PetBattle
