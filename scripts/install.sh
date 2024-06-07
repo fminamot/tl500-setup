@@ -1,4 +1,4 @@
-#!/bin/zsh -xe
+#!/bin/zsh
 # 設定内容:
 # 
 # 準備:
@@ -17,7 +17,7 @@ echo "********** Basic Settings"
 
 echo "TEAM_NAME=${TEAM_NAME}"
 echo "CLUSTER_DOMAIN=${CLUSTER_DOMAIN}"
-echo "GIT_SERVER${GIT_SERVER}"
+echo "GIT_SERVER$={GIT_SERVER}"
 echo "GITLAB_USER=${GITLAB_USER}"
 echo "GITLAB_PASSWORD=${GITLAB_PASSWORD}"
 

@@ -1,4 +1,4 @@
-#!/bin/zsh -xe
+#!/bin/zsh
 
 echo "TEAM_NAME=${TEAM_NAME}"
 echo "CLUSTER_DOMAIN=${CLUSTER_DOMAIN}"

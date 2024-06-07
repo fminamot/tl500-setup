@@ -1,4 +1,4 @@
-#!/bin/zsh -xe
+#!/bin/zsh
 
 # GitLab で team1グループの下にpet-battle-apiという名前の GitLab プロジェクトを作成（internal)
 
