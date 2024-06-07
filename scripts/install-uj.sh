@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e 
 #
 # 設定内容:
 # 
@@ -16,13 +16,12 @@ echo "********** Basic Settings"
 
 # 実際に払い出された各種情報をここに設定する
 export USER_NAME=user1
-export PASSWORD=UeOdeA3pWb
+export PASSWORD=<pass>
 export TEAM_NAME=team1
-export CLUSTER_DOMAIN="apps.cluster-xj9bj.xj9bj.sandbox1899.opentlc.com"
+export CLUSTER_DOMAIN=<domain>
 export GIT_SERVER="gitlab-ce.${CLUSTER_DOMAIN}"
 export GITLAB_USER=${USER_NAME}
 export GITLAB_PASSWORD=${PASSWORD}
-
 
 echo export TEAM_NAME=$TEAM_NAME | tee -a ~/.bashrc -a ~/.zshrc
 echo export CLUSTER_DOMAIN=$CLUSTER_DOMAIN | tee -a ~/.bashrc -a ~/.zshrc
@@ -40,9 +39,34 @@ oc login --server=https://api.${CLUSTER_DOMAIN##apps.}:6443 -u $USER_NAME -p $PA
 oc new-project ${TEAM_NAME}-ci-cd
 
 echo "********** GitLab"
-
+gitlab_pat () {
+        [ -z "$GIT_SERVER" ] && echo "Warning: must supply GIT_SERVER in env" && return
+        [ -z "$GITLAB_USER" ] && echo "Warning: must supply GITLAB_USER in env" && return
+        [ -z "$GITLAB_PASSWORD" ] && echo "Warning: must supply GITLAB_PASSWORD in env" && return
+        gitlabEncodedPassword=$(echo ${GITLAB_PASSWORD} | perl -MURI::Escape -ne 'chomp;print uri_escape($_)') 
+        gitlab_basic_auth_string="Basic $(echo -n ${GITLAB_USER}:${gitlabEncodedPassword} | base64)" 
+        body_header=$(curl -k -L -s -H "Authorization: ${gitlab_basic_auth_string}" -c /tmp/cookies.txt -i "https://${GIT_SERVER}/users/sign_in") 
+        csrf_token=$(echo $body_header | perl -ne 'print "$1\n" if /new_user.*?authenticity_token"[[:blank:]]value="(.+?)"/' | sed -n 1p) 
+        curl -k -s -H "Authorization: ${gitlab_basic_auth_string}" -b /tmp/cookies.txt -c /tmp/cookies.txt -i "https://${GIT_SERVER}/users/auth/ldapmain/callback" --data "username=${GITLAB_USER}&password=${gitlabEncodedPassword}" --data-urlencode "authenticity_token=${csrf_token}" > /dev/null
+        body_header=$(curl -k -L -H "Authorization: ${gitlab_basic_auth_string}" -H 'user-agent: curl' -b /tmp/cookies.txt -i "https://${GIT_SERVER}/profile/personal_access_tokens" -s) 
+        csrf_token=$(echo $body_header | perl -ne 'print "$1\n" if /authenticity_token"[[:blank:]]value="(.+?)"/' | sed -n 1p) 
+        revoke=$(echo $body_header | perl -nle 'print join " ", m/personal_access_tokens\/(\d+)/g;') 
+        if [ ! -z "$revoke" ]
+        then
+                for x in $revoke
+                do
+                        curl -k -s -o /dev/null -L -b /tmp/cookies.txt -X POST "https://${GIT_SERVER}/profile/personal_access_tokens/$x/revoke" --data-urlencode "authenticity_token=${csrf_token}" --data-urlencode "_method=put"
+                done
+        fi
+        body_header=$(curl -k -s -L -H "Authorization: ${gitlab_basic_auth_string}" -b /tmp/cookies.txt "https://${GIT_SERVER}/profile/personal_access_tokens" \
+                        --data-urlencode "authenticity_token=${csrf_token}" \
+                        --data 'personal_access_token[name]='"${GITLAB_USER}"'&personal_access_token[expires_at]=&personal_access_token[scopes][]=api') 
+        GITLAB_PAT=$(echo $body_header | perl -ne 'print "$1\n" if /created-personal-access-token"[[:blank:]]value="(.+?)"/' | sed -n 1p) 
+        echo $GITLAB_PAT
+}
 
 gitlab_pat
+
 echo "GITLAB_PAT=${GITLAB_PAT}"
 
 echo "********** Argo CD"
@@ -96,9 +120,6 @@ helm upgrade --install argocd \
   -f /projects/tech-exercise/argocd-values.yaml \
   redhat-cop/gitops-operator
   
-  # ArgoCDのコンソール（この時点ではApplicationはない）
-echo https://$(oc get route argocd-server --template='{{ .spec.host }}' -n ${TEAM_NAME}-ci-cd)
-
 
 echo "********** Ubiquitous-journey"
 
@@ -152,4 +173,8 @@ helm upgrade --install uj --namespace ${TEAM_NAME}-ci-cd .
 oc get projects | grep ${TEAM_NAME}
 oc get pods -n ${TEAM_NAME}-ci-cd -w
 
+# ArgoCDのコンソール（この時点ではApplicationはない）
+echo https://$(oc get route argocd-server --template='{{ .spec.host }}' -n ${TEAM_NAME}-ci-cd)
+
 echo "install-uj done"
+

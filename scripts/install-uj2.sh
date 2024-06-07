@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 # 設定内容
 # ・Keycloak
 # ・PetBattle
