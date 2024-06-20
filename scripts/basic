@@ -7,3 +7,4 @@ export GIT_SERVER="gitlab-ce.${CLUSTER_DOMAIN}"
 export GITLAB_USER=${USER_NAME}
 export GITLAB_PASSWORD=${PASSWORD}
 
+

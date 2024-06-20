@@ -12,15 +12,10 @@
 #
 
 source basic
+source print_vars
+print_vars()
 
 echo "********** Basic Settings"
-
-echo "TEAM_NAME=${TEAM_NAME}"
-echo "CLUSTER_DOMAIN=${CLUSTER_DOMAIN}"
-echo "GIT_SERVER$={GIT_SERVER}"
-echo "GITLAB_USER=${GITLAB_USER}"
-echo "GITLAB_PASSWORD=${GITLAB_PASSWORD}"
-
 
 echo export TEAM_NAME=$TEAM_NAME | tee -a ~/.bashrc -a ~/.zshrc
 echo export CLUSTER_DOMAIN=$CLUSTER_DOMAIN | tee -a ~/.bashrc -a ~/.zshrc
