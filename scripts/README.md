@@ -78,9 +78,8 @@ echo https://$(oc -n ${TEAM_NAME}-ci-cd get route webhook --template='{{ .spec.h
 
 NOTE: WebHookからPipelineを起動すること
 
-### 10. SonarQubeのインストール
+### 10. SonarQubeのインストール (TODO: シェルスクリプトにする)
 
-```
-$ ./install-sonarqube.sh
-```
+*. /install-sonarqube.txtの手順に従ってSonarQubeをデプロイする
+
 
