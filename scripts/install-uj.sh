@@ -12,10 +12,6 @@
 # tech-exerciseという新規internalプロジェクト
 #
 
-source basic
-source print_vars
-print_vars()
-
 echo "********** Argo CD"
 
 # チーム用OCPプロジェクト作成

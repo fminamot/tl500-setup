@@ -7,4 +7,12 @@ export GIT_SERVER="gitlab-ce.${CLUSTER_DOMAIN}"
 export GITLAB_USER=${USER_NAME}
 export GITLAB_PASSWORD=${PASSWORD}
 
+print_vars() {
+    echo "TEAM_NAME=${TEAM_NAME}"
+    echo "CLUSTER_DOMAIN=${CLUSTER_DOMAIN}"
+    echo "GIT_SERVER${GIT_SERVER}"
+    echo "GITLAB_USER=${GITLAB_USER}"
+    echo "GITLAB_PASSWORD=${GITLAB_PASSWORD}"
+    echo "GITLAB_PAT=${GITLAB_PAT}"
+}
 

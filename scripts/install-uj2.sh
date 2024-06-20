@@ -3,10 +3,6 @@
 # ・Keycloak
 # ・PetBattle
 
-source basic
-source print_vars
-print_vars()
-
 # UJ拡張
 # WebHook追加 (tech-exercisesプロジェクトのSettings>Integrations)
 echo https://$(oc get route argocd-server --template='{{ .spec.host }}'/api/webhook  -n ${TEAM_NAME}-ci-cd)
