@@ -1,7 +1,4 @@
 #!/bin/zsh
-# 設定内容
-# ・Keycloak
-# ・PetBattle
 
 source checkvar
 

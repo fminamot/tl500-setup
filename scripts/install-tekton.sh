@@ -1,7 +1,5 @@
 #!/bin/zsh
 
-# GitLab で team1グループの下にpet-battle-apiという名前の GitLab プロジェクトを作成（internal)
-
 source checkvar
 
 # プロジェクトをfork
@@ -42,4 +40,4 @@ git push
 echo "install-tekton done"
 
 # Pipelines -> Pipelines でパイプラインの実行状況を確認
-tkn -n ${TEAM_NAME}-ci-cd pr logs -Lf 
+#tkn -n ${TEAM_NAME}-ci-cd pr logs -Lf 

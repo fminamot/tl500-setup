@@ -33,6 +33,7 @@ $ echo "https://${GIT_SERVER}"
 * ブラウザからGitLabのURLを開く
 * <TEAM_NAME>というpublicグループ作成する
 * tech-exerciseという新規internalプロジェクトを作成する
+* pet-battle-apiという新規internalプロジェクトを作成
 
 ### 4. 環境変数とGITLAB_PATの設定
 
@@ -46,7 +47,7 @@ $ ./install-basic.sh
 $ ./install-uj.sh
 ```
 
-### 6. GitLabのtech-exerciseプロジェクトにWebHook追加
+### 6. GitLabのtech-exerciseプロジェクトにWebHook追加 (手動)
 
 * WebHook追加 (tech-exercisesプロジェクトのSettings>Integrations)
 
@@ -61,15 +62,21 @@ $ ./install-uj2.sh
 ```
 * WebコンソールでDeveloper Perspective> Topologyに移動し、 <TEAM_NAME>-testプロジェクトの pet-battle を確認
 
-### 8. GitLabでpet-battle-apiプロジェクト作成
 
-* GitLabで<TEAM_NAME>グループの下にpet-battle-apiという名前のinternalプロジェクトを作成
-
-### 9. Tektonのインストール
+### 8. Tektonのインストール
 
 ```
 $ ./install-tekton.sh
 ```
+
+### 9. GitLabのpet-battle-apiプロジェクトにWebHook追加 (手動)
+
+* WebHook追加 (tech-exercisesプロジェクトのSettings>Integrations)
+```
+echo https://$(oc -n ${TEAM_NAME}-ci-cd get route webhook --template='{{ .spec.host }}')
+```
+
+NOTE: WebHookからPipelineを起動すること
 
 ### 10. SonarQubeのインストール
 

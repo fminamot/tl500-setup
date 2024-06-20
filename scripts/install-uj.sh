@@ -1,16 +1,4 @@
 #!/bin/zsh
-#
-# 設定内容:
-# 
-# 準備:
-# 1. workspace作成
-# https://raw.githubusercontent.com/rht-labs/enablement-framework/main/codereadyworkspaces/tl500-devfile-v2.yaml
-# 2. GitLab Podが起動していることを確認
-# 3. GitLabプロジェクト作成
-#  https://gitlab-ce.<domain>/ にログイン
-# team1のpublicグループ作成
-# tech-exerciseという新規internalプロジェクト
-#
 
 source checkvar
 
