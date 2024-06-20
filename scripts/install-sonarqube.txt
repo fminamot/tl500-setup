@@ -61,5 +61,5 @@ git add .
 git commit -m  "🦇 ADD - sonarqube 🦇"
 git push
 
-# Sonarqube UIで確認
+# Sonarqube UIで確認 (admin/admin123)
 echo https://$(oc get route sonarqube --template='{{ .spec.host }}' -n ${TEAM_NAME}-ci-cd)
