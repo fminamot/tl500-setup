@@ -1,0 +1,34 @@
+if [ -z "$USER_NAME" ]; then
+    echo "USER_NAME isn't defined'"
+    exit
+fi
+
+if [ -z "$PASSWORD" ]; then
+    echo "PASSWORD isn't defined'"
+    exit
+fi
+
+if [ -z "$TEAM_NAME1" ]; then
+    echo "TEAM_NAME isn't defined'"
+    exit
+fi
+
+if [ -z "$CLUSTER_DOMAIN" ]; then
+    echo "CLUSTER_DOMAIN isn't defined'"
+    exit
+fi
+
+if [ -z "$GIT_SERVER" ]; then
+    echo "GIT_SERVER isn't defined'"
+    exit
+fi
+
+if [ -z "$GITLAB_USER" ]; then
+    echo "GITLAB_USER isn't defined'"
+    exit
+fi
+
+if [ -z "$GITLAB_PASSWORD" ]; then
+    echo "GITLAB_USER isn't defined'"
+    exit
+fi

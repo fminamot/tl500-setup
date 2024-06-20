@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+source checkvar
+
 cat << EOF > /tmp/sonarqube-auth.yaml
 apiVersion: v1
 data:

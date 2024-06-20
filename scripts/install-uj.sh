@@ -12,6 +12,8 @@
 # tech-exerciseという新規internalプロジェクト
 #
 
+source checkvar
+
 echo "********** Argo CD"
 
 # チーム用OCPプロジェクト作成

@@ -31,7 +31,7 @@ $ echo "https://${GIT_SERVER}"
 ```
 
 * ブラウザからGitLabのURLを開く
-* team1というpublicグループ作成する
+* <TEAM_NAME>というpublicグループ作成する
 * tech-exerciseという新規internalプロジェクトを作成する
 
 ### 4. 環境変数とGITLAB_PATの設定
@@ -63,7 +63,7 @@ $ ./install-uj2.sh
 
 ### 8. GitLabでpet-battle-apiプロジェクト作成
 
-* GitLabでteam1グループの下にpet-battle-apiという名前のinternalプロジェクトを作成
+* GitLabで<TEAM_NAME>グループの下にpet-battle-apiという名前のinternalプロジェクトを作成
 
 ### 9. Tektonのインストール
 

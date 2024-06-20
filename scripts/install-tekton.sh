@@ -2,6 +2,8 @@
 
 # GitLab で team1グループの下にpet-battle-apiという名前の GitLab プロジェクトを作成（internal)
 
+source checkvar
+
 # プロジェクトをfork
 cd /projects
 git clone https://github.com/rht-labs/pet-battle-api.git && cd pet-battle-api

@@ -56,6 +56,14 @@ gitlab_pat
 echo "GITLAB_PAT=${GITLAB_PAT}"
 echo export GITLAB_PAT=$GITLAB_PAT | tee -a ~/.bashrc -a ~/.zshrc
 
-print_vars()
+
+echo "TEAM_NAME=${TEAM_NAME}"
+echo "CLUSTER_DOMAIN=${CLUSTER_DOMAIN}"
+echo "GIT_SERVER${GIT_SERVER}"
+echo "GITLAB_USER=${GITLAB_USER}"
+echo "GITLAB_PASSWORD=${GITLAB_PASSWORD}"
+echo "GITLAB_PAT=${GITLAB_PAT}"
+
+
 
 
