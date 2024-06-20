@@ -15,12 +15,12 @@ source basic
 
 echo "********** Basic Settings"
 
-print_vars()
-
 echo export TEAM_NAME=$TEAM_NAME | tee -a ~/.bashrc -a ~/.zshrc
+echo export USER_NAME=$USER_NAME | tee -a ~/.bashrc -a ~/.zshrc
+echo export PASSWORD=$PASSWORD | tee -a ~/.bashrc -a ~/.zshrc
 echo export CLUSTER_DOMAIN=$CLUSTER_DOMAIN | tee -a ~/.bashrc -a ~/.zshrc
 echo export GIT_SERVER=$GIT_SERVER | tee -a ~/.bashrc -a ~/.zshrc
-echo export GIT_USER=$GIT_USER | tee -a ~/.bashrc -a ~/.zshrc
+echo export GITLAB_USER=$GITLAB_USER | tee -a ~/.bashrc -a ~/.zshrc
 
 
 echo "********** GitLab PAT"
@@ -55,5 +55,7 @@ gitlab_pat
 
 echo "GITLAB_PAT=${GITLAB_PAT}"
 echo export GITLAB_PAT=$GITLAB_PAT | tee -a ~/.bashrc -a ~/.zshrc
+
+print_vars()
 
 

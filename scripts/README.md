@@ -27,11 +27,11 @@ export GITLAB_PASSWORD=${PASSWORD}
 * TerminalでGitLabサーバーのURLを表示
 
 ```
-$ echo "https://${GITLAB_SERVER}"
+$ echo "https://${GIT_SERVER}"
 ```
 
 * ブラウザからGitLabのURLを開く
-* team1のpublicグループ作成する
+* team1というpublicグループ作成する
 * tech-exerciseという新規internalプロジェクトを作成する
 
 ### 4. 環境変数とGITLAB_PATの設定
@@ -46,24 +46,32 @@ $ ./install-basic.sh
 $ ./install-uj.sh
 ```
 
-### 6. Nexus, Keycloak, PetBattleのインストール
+### 6. GitLabのtech-exerciseプロジェクトにWebHook追加
+
+* WebHook追加 (tech-exercisesプロジェクトのSettings>Integrations)
+
+```
+echo https://$(oc get route argocd-server --template='{{ .spec.host }}'/api/webhook  -n ${TEAM_NAME}-ci-cd)
+```
+
+### 7. Nexus, Keycloak, PetBattleのインストール
 
 ```
 $ ./install-uj2.sh
 ```
 * WebコンソールでDeveloper Perspective> Topologyに移動し、 <TEAM_NAME>-testプロジェクトの pet-battle を確認
 
-### 7. GitLabでpet-battle-apiプロジェクト作成
+### 8. GitLabでpet-battle-apiプロジェクト作成
 
 * GitLabでteam1グループの下にpet-battle-apiという名前のinternalプロジェクトを作成
 
-### 8. Tektonのインストール
+### 9. Tektonのインストール
 
 ```
 $ ./install-tekton.sh
 ```
 
-### 8. SonarQubeのインストール
+### 10. SonarQubeのインストール
 
 ```
 $ ./install-sonarqube.sh
