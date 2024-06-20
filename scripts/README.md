@@ -71,7 +71,7 @@ $ ./install-tekton.sh
 
 ### 9. GitLabのpet-battle-apiプロジェクトにWebHook追加 (手動)
 
-* WebHook追加 (tech-exercisesプロジェクトのSettings>Integrations)
+* WebHook追加 (pet-battle-apiプロジェクトのSettings>Integrations)
 ```
 echo https://$(oc -n ${TEAM_NAME}-ci-cd get route webhook --template='{{ .spec.host }}')
 ```
