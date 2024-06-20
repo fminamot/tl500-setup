@@ -8,7 +8,7 @@ if [ -z "$PASSWORD" ]; then
     exit
 fi
 
-if [ -z "$TEAM_NAME1" ]; then
+if [ -z "$TEAM_NAME" ]; then
     echo "TEAM_NAME isn't defined'"
     exit
 fi
