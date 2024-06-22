@@ -7,7 +7,7 @@ $ sudo dnf install java-11-openjdk
 $ sudo dnf install maven
 ```
 
-## 1. PetBattle apiをコンテナーで起動する。
+## 1. PetBattle apiをclone
 ```
 $ git clone https://github.com/rht-labs/pet-battle-api
 ```
