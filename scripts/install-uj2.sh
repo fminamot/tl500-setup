@@ -39,7 +39,7 @@ git push
 cd /projects/tech-exercise
 helm upgrade --install uj --namespace ${TEAM_NAME}-ci-cd .
 
-# Pet Battleのデプロイ
+# Pet BattleとPet Battle APIのデプロイ
 
 if [[ $(yq e '.applications[] | select(.name=="pet-battle-api") | length' /projects/tech-exercise/pet-battle/test/values.yaml) < 1 ]]; then
     yq e '.applications.pet-battle-api = {"name": "pet-battle-api","enabled": true,"source": "https://petbattle.github.io/helm-charts","chart_name": "pet-battle-api","source_ref": "1.2.1","values": {"image_name": "pet-battle-api","image_version": "latest", "hpa": {"enabled": false}}}' -i /projects/tech-exercise/pet-battle/test/values.yaml

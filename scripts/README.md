@@ -39,6 +39,7 @@ $ echo "https://${GIT_SERVER}"
 
 ```
 $ ./install-basic.sh
+$ source ~/.zshrc
 ```
 
 ### 5. ArgoCDとUbiquitous-journeyのインストール
