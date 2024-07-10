@@ -27,6 +27,7 @@ export GITLAB_PASSWORD=${PASSWORD}
 * TerminalでGitLabサーバーのURLを表示
 
 ```
+$ source basic
 $ echo "https://${GIT_SERVER}"
 ```
 
