@@ -4,7 +4,8 @@ source checkvar
 
 # プロジェクトをfork
 cd /projects
-git clone https://github.com/rht-labs/pet-battle-api.git && cd pet-battle-api
+# git clone https://github.com/rht-labs/pet-battle-api.git && cd pet-battle-api
+git clone https://github.com/rht-labs/pet-battle-api.git -b v1.0.0 && cd pet-battle-api
 git remote set-url origin https://${GIT_SERVER}/${TEAM_NAME}/pet-battle-api.git
 git branch -M main
 git push -u origin main
