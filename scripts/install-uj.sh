@@ -52,11 +52,11 @@ argocd_cr:
 EOF
 
 
-# ArgoCD operator インストール
+# ArgoCD operator インストール (注意: version 0.4.9を指定)
 helm upgrade --install argocd \
   --namespace ${TEAM_NAME}-ci-cd \
   -f /projects/tech-exercise/argocd-values.yaml \
-  redhat-cop/gitops-operator
+  redhat-cop/gitops-operator --version 0.4.9
   
 
 echo "********** Ubiquitous-journey"
