@@ -2,13 +2,12 @@
 
 source checkvar
 
-# プロジェクトをfork
-cd /projects
-# git clone https://github.com/rht-labs/pet-battle-api.git && cd pet-battle-api
-git clone https://github.com/rht-labs/pet-battle-api.git -b v1.0.0 && cd pet-battle-api
-git remote set-url origin https://${GIT_SERVER}/${TEAM_NAME}/pet-battle-api.git
-git branch -M main
-git push -u origin main
+# プロジェクトをfork (-b v1.0.0追加)
+(cd /projects && \
+git clone https://github.com/rht-labs/pet-battle-api.git -b v1.0.0 && cd pet-battle-api && \
+git remote set-url origin https://${GIT_SERVER}/${TEAM_NAME}/pet-battle-api.git && \
+git branch -M main && \
+git push -u origin main)
 
 # Argo CD でパイプラインをクラスターに同期 
 if [[ $(yq e '.applications[] | select(.name=="tekton-pipeline") | length' /projects/tech-exercise/ubiquitous-journey/values-tooling.yaml) < 1 ]]; then
@@ -22,21 +21,21 @@ fi
 
 yq e '.applications.pet-battle-api.source |="http://nexus:8081/repository/helm-charts"' -i /projects/tech-exercise/pet-battle/test/values.yaml
 
-cd /projects/tech-exercise
-git add .
-git commit -m  "🍕 ADD - tekton pipelines config 🍕"
-git push
+(cd /projects/tech-exercise && \
+git add . && \
+git commit -m  "ADD - tekton pipelines config" && \
+git push)
 
 # GitLab>pet-battle-api>settings>integrationに指定するリンク
 echo https://$(oc -n ${TEAM_NAME}-ci-cd get route webhook --template='{{ .spec.host }}')
 
-cd /projects/pet-battle-api
-mvn -ntp versions:set -DnewVersion=1.3.1
+(cd /projects/pet-battle-api && \
+mvn -ntp versions:set -DnewVersion=1.3.1)
 
-cd /projects/pet-battle-api
-git add .
-git commit -m  "🍕 UPDATED - pet-battle-version to 1.3.1 🍕"
-git push
+(cd /projects/pet-battle-api && \
+git add . && \
+git commit -m  "UPDATED - pet-battle-version to 1.3.1" && \
+git push)
 
 echo "install-tekton done"
 
