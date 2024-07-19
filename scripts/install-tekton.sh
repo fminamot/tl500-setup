@@ -4,9 +4,11 @@ source checkvar
 
 # プロジェクトをfork (-b v1.0.0追加)
 (cd /projects && \
-git clone https://github.com/rht-labs/pet-battle-api.git -b v1.0.0 && cd pet-battle-api && \
-git remote set-url origin https://${GIT_SERVER}/${TEAM_NAME}/pet-battle-api.git && \
-git branch -M main && \
+git clone https://github.com/rht-labs/pet-battle-api.git -b v1.0.0
+
+(cd /projects/pet-battle-api && \
+git remote add origin https://${GIT_SERVER}/${TEAM_NAME}/pet-battle-api.git && \
+git branch main && \
 git push -u origin main)
 
 # Argo CD でパイプラインをクラスターに同期 
@@ -35,7 +37,7 @@ mvn -ntp versions:set -DnewVersion=1.3.1)
 (cd /projects/pet-battle-api && \
 git add . && \
 git commit -m  "UPDATED - pet-battle-version to 1.3.1" && \
-git push)
+git push origin main)
 
 echo "install-tekton done"
 
