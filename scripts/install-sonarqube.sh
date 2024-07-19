@@ -18,6 +18,7 @@ EOF
 oc apply -f /tmp/sonarqube-auth.yaml
 
 (cd /projects/tech-exercise && \
+git pull && \
 git add ubiquitous-journey/values-tooling.yaml && \
 git commit -m  "ADD - sonarqube creds sealed secret" && \
 git push)
