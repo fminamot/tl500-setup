@@ -6,7 +6,7 @@
 
 ```
 # 実際に払い出された各種情報をここに設定する
-export USER_NAME=user1
+export USER_NAME=lab01
 export PASSWORD=
 export TEAM_NAME=team1
 export CLUSTER_DOMAIN=
