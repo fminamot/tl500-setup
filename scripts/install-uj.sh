@@ -61,7 +61,7 @@ helm upgrade --install argocd \
 
 echo "********** Ubiquitous-journey"
 
-(cd /projects/tech-exercise &&\
+(cd /projects/tech-exercise && \
 git remote set-url origin https://${GITLAB_USER}:${GITLAB_PAT}@${GIT_SERVER}/${TEAM_NAME}/tech-exercise.git
 )
 
@@ -79,9 +79,9 @@ yq eval ".source = \"https://$GIT_SERVER/$TEAM_NAME/tech-exercise.git\"" -i /pro
 
 sed -i "s|TEAM_NAME|$TEAM_NAME|" /projects/tech-exercise/ubiquitous-journey/values-tooling.yaml
 
-(cd /projects/tech-exercise/ &&\
-git add . &&\
-git commit -m  "🦆 ADD - correct project names 🦆" &&\
+(cd /projects/tech-exercise/ && \
+git add . && \
+git commit -m  "ADD - correct project names" && \
 git push)
 
 # シークレットgit-authをOCPに作成
@@ -104,8 +104,8 @@ EOF
 
 # ユビキタスジャーニーにツールをインストール (この時点でArgoCDにApplicationは存在しない)
 
-(cd /projects/tech-exercise &&\
-helm upgrade --install uj --namespace ${TEAM_NAME}-ci-cd .)
+(cd /projects/tech-exercise && \
+helm upgrade --install uj --namespace ${TEAM_NAME}-ci-cd . )
 
 # ArgoCDコンソールにUbiquitous-journey登場
 
