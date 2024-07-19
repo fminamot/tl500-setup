@@ -1,9 +1,9 @@
 # 実際に払い出された各種情報をここに設定する
 export USER_NAME=lab01
-export PASSWORD=
-export TEAM_NAME=team1
-export CLUSTER_DOMAIN=
-export GIT_SERVER="gitlab-ce.${CLUSTER_DOMAIN}"
+export PASSWORD=lab01
+export TEAM_NAME=team01
+export CLUSTER_DOMAIN=apps.ocp4.example.com
+export GIT_SERVER=gitlab-ce.apps.ocp4.example.com
 export GITLAB_USER=${USER_NAME}
 export GITLAB_PASSWORD=${PASSWORD}
 
