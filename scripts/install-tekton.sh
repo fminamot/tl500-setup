@@ -4,7 +4,7 @@ source checkvar
 
 # プロジェクトをfork
 (cd /projects && \
-git clone https://github.com/rht-labs/pet-battle-api.git
+git clone https://github.com/rht-labs/pet-battle-api.git)
 
 (cd /projects/pet-battle-api && \
 git remote add origin https://${GIT_SERVER}/${TEAM_NAME}/pet-battle-api.git && \
