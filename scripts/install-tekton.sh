@@ -7,8 +7,9 @@ cd /projects
 git clone https://github.com/rht-labs/pet-battle-api.git
 
 cd /projects/pet-battle-api
-git remote add origin https://${GIT_SERVER}/${TEAM_NAME}/pet-battle-api.git
 git branch main
+git remote remove origin
+git remote add origin https://${GIT_SERVER}/${TEAM_NAME}/pet-battle-api.git
 git push -u origin main
 
 # Argo CD でパイプラインをクラスターに同期 
