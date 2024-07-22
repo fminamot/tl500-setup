@@ -2,9 +2,9 @@
 
 source checkvar
 
-# プロジェクトをfork (-b v1.0.0追加)
+# プロジェクトをfork
 (cd /projects && \
-git clone https://github.com/rht-labs/pet-battle-api.git -b v1.0.0
+git clone https://github.com/rht-labs/pet-battle-api.git
 
 (cd /projects/pet-battle-api && \
 git remote add origin https://${GIT_SERVER}/${TEAM_NAME}/pet-battle-api.git && \
