@@ -37,6 +37,76 @@ git add .
 git commit -m  "ADD - sonarqube"
 git push
 
+# sonarqube-quality-gate-check タスク定義追加
+cd /projects/tech-exercise
+cat <<'EOF' >> tekton/templates/tasks/sonarqube-quality-gate-check.yaml
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: sonarqube-quality-gate-check
+spec:
+  description: >-
+    This Task can be used to check sonarqube quality gate
+  workspaces:
+    - name: output
+    - name: sonarqube-auth
+      optional: true
+  params:
+    - name: WORK_DIRECTORY
+      description: Directory to start build in (handle multiple branches)
+      type: string
+    - name: IMAGE
+      description: the image to use
+      type: string
+      default: "quay.io/eformat/openshift-helm:latest"
+  steps:
+  - name: check
+    image: $(params.IMAGE)
+    script: |
+      #!/bin/sh
+      test -f $(workspaces.sonarqube-auth.path) || export SONAR_USER="$(cat $(workspaces.sonarqube-auth.path)/username):$(cat $(workspaces.sonarqube-auth.path)/password)"
+  
+      cd $(workspaces.output.path)/$(params.WORK_DIRECTORY)
+      TASKFILE=$(find . -type f -name report-task.txt)
+      if [ -z ${TASKFILE} ]; then
+        echo "Task File not found"
+        exit 1
+      fi
+      echo ${TASKFILE}
+
+      TASKURL=$(cat ${TASKFILE} | grep ceTaskUrl)
+      TURL=${TASKURL##ceTaskUrl=}
+      if [ -z ${TURL} ]; then
+        echo "Task URL not found"
+        exit 1
+      fi
+      echo ${TURL}
+
+      AID=$(curl -u ${SONAR_USER} -s $TURL | jq -r .task.analysisId)
+      if [ -z ${AID} ]; then
+        echo "Analysis ID not found"
+        exit 1
+      fi
+      echo ${AID}
+
+      SERVERURL=$(cat ${TASKFILE} | grep serverUrl)
+      SURL=${SERVERURL##serverUrl=}
+      if [ -z ${SURL} ]; then
+        echo "Server URL not found"
+        exit 1
+      fi
+      echo ${SURL}
+
+      BUILDSTATUS=$(curl -u ${SONAR_USER} -s $SURL/api/qualitygates/project_status?analysisId=${AID} | jq -r .projectStatus.status)
+      if [ "${BUILDSTATUS}" != "OK" ]; then
+        echo "Failed Quality Gate - please check - $SURL/api/qualitygates/project_status?analysisId=${AID}"
+        exit 1
+      fi
+
+      echo "Quality Gate Passed OK - $SURL/api/qualitygates/project_status?analysisId=${AID}"
+      exit 0
+EOF
+
 # Sonarqube UIで確認 (admin/admin123)
 echo https://$(oc get route sonarqube --template='{{ .spec.host }}' -n ${TEAM_NAME}-ci-cd)
 

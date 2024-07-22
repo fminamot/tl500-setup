@@ -8,6 +8,7 @@ git clone https://github.com/rht-labs/pet-battle-api.git
 
 cd /projects/pet-battle-api
 git branch main
+git checkout main
 git remote remove origin
 git remote add origin https://${GIT_SERVER}/${TEAM_NAME}/pet-battle-api.git
 git push -u origin main
@@ -29,9 +30,6 @@ git add .
 git commit -m  "ADD - tekton pipelines config"
 git push
 
-# GitLab>pet-battle-api>settings>integrationに指定するリンク
-echo https://$(oc -n ${TEAM_NAME}-ci-cd get route webhook --template='{{ .spec.host }}')
-
 cd /projects/pet-battle-api
 mvn -ntp versions:set -DnewVersion=1.3.1
 
@@ -39,6 +37,11 @@ cd /projects/pet-battle-api
 git add . 
 git commit -m  "UPDATED - pet-battle-version to 1.3.1"
 git push origin main
+
+sleep 10
+
+# GitLab>pet-battle-api>settings>integrationに指定するリンク
+echo https://$(oc -n ${TEAM_NAME}-ci-cd get route webhook --template='{{ .spec.host }}')
 
 echo "install-tekton done"
 
