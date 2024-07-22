@@ -17,11 +17,11 @@ EOF
 
 oc apply -f /tmp/sonarqube-auth.yaml
 
-(cd /projects/tech-exercise && \
-git pull && \
-git add ubiquitous-journey/values-tooling.yaml && \
-git commit -m  "ADD - sonarqube creds sealed secret" && \
-git push)
+cd /projects/tech-exercise
+git pull
+git add ubiquitous-journey/values-tooling.yaml
+git commit -m  "ADD - sonarqube creds sealed secret"
+git push
 
 oc get secrets -n ${TEAM_NAME}-ci-cd | grep sonarqube-auth
 
@@ -32,10 +32,10 @@ if [[ $(yq e '.applications[] | select(.name=="sonarqube") | length' /projects/t
 ' -i /projects/tech-exercise/ubiquitous-journey/values-tooling.yaml
 fi
 
-(cd /projects/tech-exercise && \
-git add . && \
-git commit -m  "ADD - sonarqube" && \
-git push)
+cd /projects/tech-exercise
+git add . 
+git commit -m  "ADD - sonarqube"
+git push
 
 # Sonarqube UIで確認 (admin/admin123)
 echo https://$(oc get route sonarqube --template='{{ .spec.host }}' -n ${TEAM_NAME}-ci-cd)

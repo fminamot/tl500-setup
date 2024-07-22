@@ -11,10 +11,10 @@ if [[ $(yq e '.applications[] | select(.name=="nexus") | length' /projects/tech-
     yq e '.applications += {"name": "nexus","enabled": true,"source": "https://redhat-cop.github.io/helm-charts","chart_name": "sonatype-nexus","source_ref": "1.1.10","values":{"includeRHRepositories": false,"service": {"name": "nexus"}}}' -i /projects/tech-exercise/ubiquitous-journey/values-tooling.yaml
 fi
 
-(cd /projects/tech-exercise && \
-git add . && \
-git commit -m  "ADD - nexus repo manager" && \
-git push)
+cd /projects/tech-exercise
+git add . 
+git commit -m  "ADD - nexus repo manager"
+git push
 
 # Nexusコンソール (PodがRunningになるまで時間がかかる)
 echo https://$(oc get route nexus --template='{{ .spec.host }}' -n ${TEAM_NAME}-ci-cd)
@@ -31,13 +31,13 @@ if [[ $(yq e '.applications[] | select(.name=="keycloak") | length' /projects/te
     sed -i "s|CLUSTER_DOMAIN|$CLUSTER_DOMAIN|" /projects/tech-exercise/pet-battle/test/values.yaml
 fi
 
-(cd /projects/tech-exercise && \
-git add . &&\ 
-git commit -m  "ADD - app-of-apps and keycloak to test" && \
-git push)
+cd /projects/tech-exercise
+git add .
+git commit -m  "ADD - app-of-apps and keycloak to test"
+git push
 
-(cd /projects/tech-exercise && \
-helm upgrade --install uj --namespace ${TEAM_NAME}-ci-cd . )
+cd /projects/tech-exercise
+helm upgrade --install uj --namespace ${TEAM_NAME}-ci-cd .
 
 # Pet BattleとPet Battle APIのデプロイ
 
