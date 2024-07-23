@@ -51,7 +51,7 @@ $ ./install-uj.sh
 
 ### 6. GitLabのtech-exerciseプロジェクトにWebHook追加 (手動)
 
-* WebHook追加 (tech-exercisesプロジェクトのSettings>Integrations)
+* WebHook追加 (tech-exerciseプロジェクトのSettings>Integrations)
 
 ```
 echo https://$(oc get route argocd-server --template='{{ .spec.host }}'/api/webhook  -n ${TEAM_NAME}-ci-cd)
