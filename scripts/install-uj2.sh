@@ -3,8 +3,6 @@
 source checkvar
 
 # UJ拡張
-# WebHook追加 (tech-exercisesプロジェクトのSettings>Integrations)
-echo https://$(oc get route argocd-server --template='{{ .spec.host }}'/api/webhook  -n ${TEAM_NAME}-ci-cd)
 
 # Nexusを追加
 if [[ $(yq e '.applications[] | select(.name=="nexus") | length' /projects/tech-exercise/ubiquitous-journey/values-tooling.yaml) < 1 ]]; then
@@ -67,8 +65,11 @@ git add .
 git commit -m  "🐩 ADD - pet battle apps 🐩"
 git push
 
+# WebHook追加 (tech-exerciseプロジェクトのSettings>Integrations)
+echo "WebHook(tech-exercise)=https://$(oc get route argocd-server --template='{{ .spec.host }}'/api/webhook  -n ${TEAM_NAME}-ci-cd)"
+
 # Nexusコンソール (PodがRunningになるまで時間がかかる)
-echo https://$(oc get route nexus --template='{{ .spec.host }}' -n ${TEAM_NAME}-ci-cd)
+echo "Nexus UI=https://$(oc get route nexus --template='{{ .spec.host }}' -n ${TEAM_NAME}-ci-cd)"
 
 echo "install-uj2 done"
 # OpenShift -> Developer View -> Topologyに移動し、 <TEAM_NAME>-testプロジェクトの pet-battle を確認(GUIを開く)

@@ -108,6 +108,6 @@ spec:
 EOF
 
 # Sonarqube UIで確認 (admin/admin123)
-echo https://$(oc get route sonarqube --template='{{ .spec.host }}' -n ${TEAM_NAME}-ci-cd)
+echo "Sonarqube UI=https://$(oc get route sonarqube --template='{{ .spec.host }}' -n ${TEAM_NAME}-ci-cd)"
 
 # Sonar スキャンによる Tekton パイプラインの拡張

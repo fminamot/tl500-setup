@@ -116,7 +116,7 @@ sleep 30
 oc get pods -n ${TEAM_NAME}-ci-cd
 
 # ArgoCDのコンソール（この時点ではApplicationはない）
-echo https://$(oc get route argocd-server --template='{{ .spec.host }}' -n ${TEAM_NAME}-ci-cd)
+echo "ArgoCD UI=https://$(oc get route argocd-server --template='{{ .spec.host }}' -n ${TEAM_NAME}-ci-cd)"
 
 echo "install-uj done"
 
