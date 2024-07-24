@@ -7,10 +7,8 @@ cd /projects
 git clone https://github.com/rht-labs/pet-battle-api.git
 
 cd /projects/pet-battle-api
-git branch main
-git checkout main
 # commit ccb51ecより後はChartのバージョンが1.2.2に変更されている。
-git checkout -b ccb51ec ccb51ec
+git checkout main
 git remote remove origin
 git remote add origin https://${GIT_SERVER}/${TEAM_NAME}/pet-battle-api.git
 git push -u origin main

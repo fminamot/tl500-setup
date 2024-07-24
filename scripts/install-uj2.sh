@@ -16,9 +16,6 @@ git add .
 git commit -m  "ADD - nexus repo manager"
 git push
 
-# Nexusコンソール (PodがRunningになるまで時間がかかる)
-echo https://$(oc get route nexus --template='{{ .spec.host }}' -n ${TEAM_NAME}-ci-cd)
-
 # 暗号化されたシークレット(削除)
 
 # Keycloakのデプロイ(注意: source_ref:5c5872adc2f4803050b897fe545580ee81899606を指定)
@@ -69,6 +66,9 @@ cd /projects/tech-exercise
 git add .
 git commit -m  "🐩 ADD - pet battle apps 🐩"
 git push
+
+# Nexusコンソール (PodがRunningになるまで時間がかかる)
+echo https://$(oc get route nexus --template='{{ .spec.host }}' -n ${TEAM_NAME}-ci-cd)
 
 echo "install-uj2 done"
 # OpenShift -> Developer View -> Topologyに移動し、 <TEAM_NAME>-testプロジェクトの pet-battle を確認(GUIを開く)
