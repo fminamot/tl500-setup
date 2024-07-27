@@ -20,11 +20,6 @@ if [[ $(yq e '.applications[] | select(.name=="allure") | length' /projects/tech
    yq e '.applications += {"name":"allure","enabled":true,"source":"https://github.com/eformat/allure.git","source_path":"chart","source_ref":"main","values":{"security":{"secret":"allure-auth"}}}' -i /projects/tech-exercise/ubiquitous-journey/values-tooling.yaml
 fi
 
-cd /projects/tech-exercise
-git add ubiquitous-journey/values-tooling.yaml
-git commit -m  "ADD - Allure tooling"
-git push
-
 # allure-post-reportタスク定義
 
 cd /projects/tech-exercise
@@ -83,6 +78,10 @@ spec:
           $(params.ALLURE_HOST)
 EOF
 
+cd /projects/tech-exercise
+git add ubiquitous-journey/values-tooling.yaml
+git commit -m  "ADD - Allure tooling"
+git push
 
 # Allure UI
 echo "Allure UI=https://$(oc get route allure --template='{{ .spec.host }}' -n ${TEAM_NAME}-ci-cd)/allure-docker-service/projects/pet-battle-api/reports/latest/index.html"

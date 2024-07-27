@@ -68,6 +68,9 @@ git push
 # WebHook追加 (tech-exerciseプロジェクトのSettings>Integrations)
 echo "WebHook(tech-exercise)=https://$(oc get route argocd-server --template='{{ .spec.host }}'/api/webhook  -n ${TEAM_NAME}-ci-cd)"
 
+echo "\nWaiting is Nexus is deployed, seeing ArgoCD UI"
+sleep 120
+
 # Nexusコンソール (PodがRunningになるまで時間がかかる)
 echo "Nexus UI=https://$(oc get route nexus --template='{{ .spec.host }}' -n ${TEAM_NAME}-ci-cd)"
 

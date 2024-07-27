@@ -32,11 +32,6 @@ if [[ $(yq e '.applications[] | select(.name=="sonarqube") | length' /projects/t
 ' -i /projects/tech-exercise/ubiquitous-journey/values-tooling.yaml
 fi
 
-cd /projects/tech-exercise
-git add . 
-git commit -m  "ADD - sonarqube"
-git push
-
 # sonarqube-quality-gate-check タスク定義追加
 cd /projects/tech-exercise
 cat <<'EOF' >> tekton/templates/tasks/sonarqube-quality-gate-check.yaml
@@ -106,6 +101,11 @@ spec:
       echo "Quality Gate Passed OK - $SURL/api/qualitygates/project_status?analysisId=${AID}"
       exit 0
 EOF
+
+cd /projects/tech-exercise
+git add . 
+git commit -m  "ADD - sonarqube"
+git push
 
 # Sonarqube UIで確認 (admin/admin123)
 echo "Sonarqube UI=https://$(oc get route sonarqube --template='{{ .spec.host }}' -n ${TEAM_NAME}-ci-cd)"
