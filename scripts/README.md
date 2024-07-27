@@ -84,4 +84,15 @@ NOTE: WebHookからPipelineを起動すること
 
 *. /install-sonarqube.txtの手順に従ってSonarQubeをデプロイする
 
+#### 11. デプロイ状況の確認
+
+```
+./show-consoles.sh
+```
+
+```
+./watch-ci-cd.sh
+```
+
+
 
