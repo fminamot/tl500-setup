@@ -24,7 +24,7 @@ echo "https://nexus-${TEAM_NAME}-ci-cd.apps.ocp4.example.com"
 
 echo "SonarQube UI"
 echo "https://sonarqube-${TEAM_NAME}-ci-cd.apps.ocp4.example.com"
-echo "username: admin, password: admin123
+echo "username: admin, password: admin123"
 
 echo "Allure UI"
 echo "https://allure-${TEAM_NAME}-ci-cd.apps.ocp4.example.com/allure-docker-service/projects/pet-battle-api/reports/latest/index.html"
