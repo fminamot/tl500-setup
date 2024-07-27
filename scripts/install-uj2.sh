@@ -68,13 +68,15 @@ git push
 sleep 30
 
 # Nexusがデプロイされるまで待つ
-oc rollout status deployment nexus-sonatype-nexus -n ${TEAM_NAME}-ci-cd --timeout 120s
+#oc rollout status deployment nexus-sonatype-nexus -n ${TEAM_NAME}-ci-cd --timeout 120s
 
+echo "Add the next webhook and trigger it manually"
+echo "Then watch the ArgoCD UI until Nexus is deployed"
 # WebHook追加 (tech-exerciseプロジェクトのSettings>Integrations)
 echo "WebHook(tech-exercise)=https://$(oc get route argocd-server --template='{{ .spec.host }}'/api/webhook  -n ${TEAM_NAME}-ci-cd)"
 
 # Nexusコンソール (PodがRunningになるまで時間がかかる)
-echo "Nexus UI=https://$(oc get route nexus --template='{{ .spec.host }}' -n ${TEAM_NAME}-ci-cd)"
+#echo "Nexus UI=https://$(oc get route nexus --template='{{ .spec.host }}' -n ${TEAM_NAME}-ci-cd)"
 
 # OpenShift -> Developer View -> Topologyに移動し、 <TEAM_NAME>-testプロジェクトの pet-battle を確認(GUIを開く)
 
