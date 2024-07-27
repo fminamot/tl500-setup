@@ -65,13 +65,16 @@ git add .
 git commit -m  "🐩 ADD - pet battle apps 🐩"
 git push
 
-echo "install-uj2 done"
 
-echo "\nAdd the webhook to tech-exercise and watch the ArgoCD UI until Nexus is deployed"
-# OpenShift -> Developer View -> Topologyに移動し、 <TEAM_NAME>-testプロジェクトの pet-battle を確認(GUIを開く)
+# Nexusがデプロイされるまで待つ
+oc rollout status deployment nexus-sonatype-nexus -n ${TEAM_NAME}-ci-cd --timeout 120s
 
 # WebHook追加 (tech-exerciseプロジェクトのSettings>Integrations)
 echo "WebHook(tech-exercise)=https://$(oc get route argocd-server --template='{{ .spec.host }}'/api/webhook  -n ${TEAM_NAME}-ci-cd)"
 
 # Nexusコンソール (PodがRunningになるまで時間がかかる)
-# echo "Nexus UI=https://$(oc get route nexus --template='{{ .spec.host }}' -n ${TEAM_NAME}-ci-cd)"
+echo "Nexus UI=https://$(oc get route nexus --template='{{ .spec.host }}' -n ${TEAM_NAME}-ci-cd)"
+
+# OpenShift -> Developer View -> Topologyに移動し、 <TEAM_NAME>-testプロジェクトの pet-battle を確認(GUIを開く)
+
+echo "install-uj2 done"
