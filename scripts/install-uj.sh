@@ -111,9 +111,7 @@ helm upgrade --install uj --namespace ${TEAM_NAME}-ci-cd .
 
 oc get projects | grep ${TEAM_NAME}
 
-oc get pods -n ${TEAM_NAME}-ci-cd
 sleep 30
-oc get pods -n ${TEAM_NAME}-ci-cd
 
 # ArgoCDのコンソール（この時点ではApplicationはない）
 echo "ArgoCD UI=https://$(oc get route argocd-server --template='{{ .spec.host }}' -n ${TEAM_NAME}-ci-cd)"

@@ -38,7 +38,7 @@ git add .
 git commit -m  "UPDATED - pet-battle-version to 1.3.1"
 git push origin main
 
-sleep 10
+sleep 30
 
 # GitLab>pet-battle-api>settings>integrationに指定するリンク
 echo "WebHook(pet battle api)=https://$(oc -n ${TEAM_NAME}-ci-cd get route webhook --template='{{ .spec.host }}')"
