@@ -71,7 +71,7 @@ git push
 
 echo "install-uj2 done"
 
-echo "\nAdd webhook to tech-exercise and watch the ArgoCD UI until Nexus is deployed'
+echo "\nAdd webhook to tech-exercise and watch the ArgoCD UI until Nexus is deployed"
 # OpenShift -> Developer View -> Topologyに移動し、 <TEAM_NAME>-testプロジェクトの pet-battle を確認(GUIを開く)
 
 # WebHook追加 (tech-exerciseプロジェクトのSettings>Integrations)
