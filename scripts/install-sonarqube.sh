@@ -107,6 +107,8 @@ git add .
 git commit -m  "ADD - sonarqube"
 git push
 
+sleep 30
+
 # Sonarqubeがデプロイされまで待つ
 oc rollout status deployment sonarqube-sonarqube -n ${TEAM_NAME}-ci-cd --timeout 120s
 

@@ -111,6 +111,8 @@ helm upgrade --install uj --namespace ${TEAM_NAME}-ci-cd .
 
 oc get projects | grep ${TEAM_NAME}
 
+sleep 30
+
 # ArgoCDがデプロイされまで待つ
 oc rollout status deployment argocd-server -n ${TEAM_NAME}-ci-cd --timeout 120s
 

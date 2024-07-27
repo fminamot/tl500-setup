@@ -38,6 +38,8 @@ git add .
 git commit -m  "UPDATED - pet-battle-version to 1.3.1"
 git push origin main
 
+sleep 30
+
 # webhookがデプロイされまで待つ
 oc rollout status deployment el-gitlab-webhook -n ${TEAM_NAME}-ci-cd --timeout 120s
 

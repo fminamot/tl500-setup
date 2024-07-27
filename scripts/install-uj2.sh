@@ -65,6 +65,7 @@ git add .
 git commit -m  "🐩 ADD - pet battle apps 🐩"
 git push
 
+sleep 30
 
 # Nexusがデプロイされるまで待つ
 oc rollout status deployment nexus-sonatype-nexus -n ${TEAM_NAME}-ci-cd --timeout 120s

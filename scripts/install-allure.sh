@@ -83,6 +83,8 @@ git add ubiquitous-journey/values-tooling.yaml
 git commit -m  "ADD - Allure tooling"
 git push
 
+sleep 30
+
 # Allureがデプロイされまで待つ
 oc rollout status deployment allure -n ${TEAM_NAME}-ci-cd --timeout 120s
 
