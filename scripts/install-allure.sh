@@ -79,7 +79,7 @@ spec:
 EOF
 
 cd /projects/tech-exercise
-git add ubiquitous-journey/values-tooling.yaml
+git add ubiquitous-journey/values-tooling.yaml tekton/templates/tasks/allure-post-report.yaml
 git commit -m  "ADD - Allure tooling"
 git push
 
