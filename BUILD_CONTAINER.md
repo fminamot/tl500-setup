@@ -9,6 +9,7 @@
 
 ```
 cd container
+podman login registry.redhat.io
 podman build -t tl500 .
 ```
 
@@ -37,7 +38,8 @@ podman run --rm --name tl500 -d -p 8082:8080 quay.io/minamot/tl500:latest
 ```
 oc login -u admin -p <password> https://api.ocp4.example.com:6443
 oc new-app --name tl500-docs-ja --image quay.io/minamot/tl500:latest -n tl500-tech-exercise
-oc expose service tl500-docs-ja
+oc expose service tl500-docs-ja -n tl500-tech-exercise
+oc get all -n tl500-tech-exercise
 ```
 
 アクセスURL
