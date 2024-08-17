@@ -45,7 +45,23 @@ gitlab_pat
 echo "GITLAB_PAT=${GITLAB_PAT}"
 echo export GITLAB_PAT=$GITLAB_PAT | tee -a ~/.bashrc -a ~/.zshrc
 
+# Group作成
+curl -k -X POST \
+  -H "PRIVATE-TOKEN: ${GITLAB_PAT}" -H "Content-Type:application/json" \
+  "https://${GIT_SERVER}/api/v4/groups/" -d "{\"path\": \"${TEAM_NAME}\", \"name\": \"${TEAM_NAME}\", \"visibility\": \"public\"}"
 
+# Namespace ID取得
+NAMESPACE_ID=$(curl -s -k -H "PRIVATE-TOKEN: ${GITLAB_PAT}" "https://${GIT_SERVER}/api/v4/namespaces/${TEAM_NAME}" | jq -r ".id")
+echo $NAMESPACE_ID
+
+# Git Repository作成
+for REPO_NAME in tech-exercise pet-battle-api
+do
+curl -k -X POST \
+  -H "PRIVATE-TOKEN: ${GITLAB_PAT}" -H "Content-Type:application/json" \
+  "https://${GIT_SERVER}/api/v4/projects/" -d "{\"namespace_id\": \"${NAMESPACE_ID}\", \"name\": \"${REPO_NAME}\",\"visibility\": \"internal\"}"
+done
+  
 echo "TEAM_NAME=${TEAM_NAME}"
 echo "CLUSTER_DOMAIN=${CLUSTER_DOMAIN}"
 echo "GIT_SERVER${GIT_SERVER}"
