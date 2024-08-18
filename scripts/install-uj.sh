@@ -119,5 +119,9 @@ oc rollout status deployment argocd-server -n ${TEAM_NAME}-ci-cd --timeout 120s
 # ArgoCDのコンソール（この時点ではApplicationはない）
 echo "ArgoCD UI=https://$(oc get route argocd-server --template='{{ .spec.host }}' -n ${TEAM_NAME}-ci-cd)"
 
+echo "Add the next webhook and trigger it manually"
+# WebHook追加 (tech-exerciseプロジェクトのSettings>Integrations)
+echo "WebHook(tech-exercise)=https://$(oc get route argocd-server --template='{{ .spec.host }}'/api/webhook  -n ${TEAM_NAME}-ci-cd)"
+
 echo "install-uj done"
 

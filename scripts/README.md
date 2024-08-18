@@ -32,16 +32,21 @@ $ echo "https://${GIT_SERVER}"
 ```
 
 * ブラウザからGitLabのURLを開く
-* <TEAM_NAME>というpublicグループ作成する
-* tech-exerciseという新規internalプロジェクトを作成する
-* pet-battle-apiという新規internalプロジェクトを作成
 
-### 4. 環境変数とGITLAB_PATの設定
+
+### 4. 環境変数の設定とGitLabプロジェクトの作成
 
 ```
 $ ./install-basic.sh
 $ source ~/.zshrc
 ```
+
+このスクリプトによって、publicな teamX グループを作成し、そのグループの下に2つの internal プロジェクトを作成する。
+GitLab UI上で、実際に作成されていることを確認する。
+
+* tech-exercise
+* pet-battle-api
+
 
 ### 5. ArgoCDとUbiquitous-journeyのインストール
 
