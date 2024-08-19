@@ -41,10 +41,21 @@ git push origin main
 sleep 30
 
 # webhookがデプロイされまで待つ
-oc rollout status deployment el-gitlab-webhook -n ${TEAM_NAME}-ci-cd --timeout 120s
+oc rollout status deployment el-gitlab-webhook -n ${TEAM_NAME}-ci-cd --timeout 240s
+
+# WebHook設定 (pet-battle-api)
+echo "Adding the webhook to pet-battle-api with GitLab REST API"
+
+PETBATTLE_API_ID=$(cat /tmp/projects.json | jq --arg team_name ${TEAM_NAME} '.[] | select (.namespace.name == $team_name and .name == "pet-battle-api")' | jq -r '.id')
+echo "PETBATTLE_API_ID=${PETBATTLE_API_ID}"
+
+curl -k -X POST \
+  -H "PRIVATE-TOKEN: ${GITLAB_PAT}" -H "Content-Type:application/json" \
+  "https://${GIT_SERVER}/api/v4/projects/${PETBATTLE_API_ID}/hooks/" \
+  -d "{\"id\":${PETBATTLE_API_ID}, \"url\":\"https://webhook-${TEAM_NAME}-ci-cd.apps.ocp4.example.com\", \"push_events\":true, \"enable_ssl_verification\":false}"
 
 # GitLab>pet-battle-api>settings>integrationに指定するリンク
-echo "WebHook(pet battle api)=https://$(oc -n ${TEAM_NAME}-ci-cd get route webhook --template='{{ .spec.host }}')"
+echo "WebHook(pet battle api) has been set to https://$(oc -n ${TEAM_NAME}-ci-cd get route webhook --template='{{ .spec.host }}')"
 
 echo "install-tekton done"
 

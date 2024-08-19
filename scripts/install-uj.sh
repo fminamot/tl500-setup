@@ -119,9 +119,20 @@ oc rollout status deployment argocd-server -n ${TEAM_NAME}-ci-cd --timeout 120s
 # ArgoCDのコンソール（この時点ではApplicationはない）
 echo "ArgoCD UI=https://$(oc get route argocd-server --template='{{ .spec.host }}' -n ${TEAM_NAME}-ci-cd)"
 
-echo "Add the next webhook and trigger it manually"
+# WebHook設定 (tech-exercise)
+echo "Adding the webhook to tech-exercise project with GitLab REST API"
+
+curl -s -k -H "PRIVATE-TOKEN: ${GITLAB_PAT}" "https://${GIT_SERVER}/api/v4/projects/" > /tmp/projects.json
+TECH_EXERCISE_ID=$(cat /tmp/projects.json | jq --arg team_name ${TEAM_NAME} '.[] | select (.namespace.name == $team_name and .name == "tech-exercise")' | jq -r '.id')
+# echo "TECH_EXERCISE_ID=${TECH_EXERCISE_ID}"
+
+curl -k -X POST \
+  -H "PRIVATE-TOKEN: ${GITLAB_PAT}" -H "Content-Type:application/json" \
+  "https://${GIT_SERVER}/api/v4/projects/${TECH_EXERCISE_ID}/hooks/" \
+  -d "{\"id\":${TECH_EXERCISE_ID}, \"url\":\"https://argocd-server-${TEAM_NAME}-ci-cd.apps.ocp4.example.com/api/webhook\", \"push_events\":true, \"enable_ssl_verification\":false}"
+
 # WebHook追加 (tech-exerciseプロジェクトのSettings>Integrations)
-echo "WebHook(tech-exercise)=https://$(oc get route argocd-server --template='{{ .spec.host }}'/api/webhook  -n ${TEAM_NAME}-ci-cd)"
+echo "WebHook(tech-exercise) has been set to https://$(oc get route argocd-server --template='{{ .spec.host }}'/api/webhook  -n ${TEAM_NAME}-ci-cd)"
 
 echo "install-uj done"
 
