@@ -2,16 +2,6 @@
 
 source basic
 
-echo "********** Basic Settings"
-
-echo export TEAM_NAME=$TEAM_NAME | tee -a ~/.bashrc -a ~/.zshrc
-echo export USER_NAME=$USER_NAME | tee -a ~/.bashrc -a ~/.zshrc
-echo export PASSWORD=$PASSWORD | tee -a ~/.bashrc -a ~/.zshrc
-echo export CLUSTER_DOMAIN=$CLUSTER_DOMAIN | tee -a ~/.bashrc -a ~/.zshrc
-echo export GIT_SERVER=$GIT_SERVER | tee -a ~/.bashrc -a ~/.zshrc
-echo export GITLAB_USER=$GITLAB_USER | tee -a ~/.bashrc -a ~/.zshrc
-
-
 echo "********** GitLab PAT"
 
 gitlab_pat () {
@@ -42,7 +32,16 @@ gitlab_pat () {
 
 gitlab_pat
 
-echo "GITLAB_PAT=${GITLAB_PAT}"
+export GITLAB_PAT
+
+echo "********** Basic Settings"
+
+echo export TEAM_NAME=$TEAM_NAME | tee -a ~/.bashrc -a ~/.zshrc
+echo export USER_NAME=$USER_NAME | tee -a ~/.bashrc -a ~/.zshrc
+echo export PASSWORD=$PASSWORD | tee -a ~/.bashrc -a ~/.zshrc
+echo export CLUSTER_DOMAIN=$CLUSTER_DOMAIN | tee -a ~/.bashrc -a ~/.zshrc
+echo export GIT_SERVER=$GIT_SERVER | tee -a ~/.bashrc -a ~/.zshrc
+echo export GITLAB_USER=$GITLAB_USER | tee -a ~/.bashrc -a ~/.zshrc
 echo export GITLAB_PAT=$GITLAB_PAT | tee -a ~/.bashrc -a ~/.zshrc
 
 # Group作成
@@ -62,12 +61,7 @@ curl -k -X POST \
   "https://${GIT_SERVER}/api/v4/projects/" -d "{\"namespace_id\": \"${NAMESPACE_ID}\", \"name\": \"${REPO_NAME}\",\"visibility\": \"internal\"}"
 done
   
-echo "TEAM_NAME=${TEAM_NAME}"
-echo "CLUSTER_DOMAIN=${CLUSTER_DOMAIN}"
-echo "GIT_SERVER${GIT_SERVER}"
-echo "GITLAB_USER=${GITLAB_USER}"
-echo "GITLAB_PASSWORD=${GITLAB_PASSWORD}"
-echo "GITLAB_PAT=${GITLAB_PAT}"
+source printbasic
 
 echo "\ninstall-basic done"
 
