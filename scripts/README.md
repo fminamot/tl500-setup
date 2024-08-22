@@ -85,11 +85,19 @@ echo https://$(oc -n ${TEAM_NAME}-ci-cd get route webhook --template='{{ .spec.h
 
 ### 10. pet-battle-apiプロジェクトのWebHookを使ってPipelineを起動し、パイプラインが完了することを確認する
 
-### 11. SonarQubeのインストール (TODO: シェルスクリプトにする)
+### 11. SonarQubeのインストール
 
-*. /install-sonarqube.txtの手順に従ってSonarQubeをデプロイする
+```
+$ ./install-sonarqube.sh
+```
 
-#### 12. デプロイ状況の確認
+### 11. Allureのインストール
+
+```
+$ ./install-allure.sh
+```
+
+#### 13. デプロイ状況の確認
 
 ```
 ./show-consoles.sh
