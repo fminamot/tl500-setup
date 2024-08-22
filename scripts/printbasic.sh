@@ -1,4 +1,4 @@
-#!/bin/bashrc
+#!/bin/bash
 echo "TEAM_NAME=$TEAM_NAME"
 echo "USER_NAME=$USER_NAME"
 echo "PASSWORD=$PASSWORD"
