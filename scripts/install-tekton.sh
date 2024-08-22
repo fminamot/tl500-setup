@@ -57,7 +57,7 @@ curl -k -X POST \
 # GitLab>pet-battle-api>settings>integrationに指定するリンク
 echo "WebHook(pet battle api) has been set to https://$(oc -n ${TEAM_NAME}-ci-cd get route webhook --template='{{ .spec.host }}')"
 
-echo "install-tekton done"
+echo "\ninstall-tekton done"
 
 # Pipelines -> Pipelines でパイプラインの実行状況を確認
 #tkn -n ${TEAM_NAME}-ci-cd pr logs -Lf 

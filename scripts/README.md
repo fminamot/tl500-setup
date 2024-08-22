@@ -54,7 +54,7 @@ GitLab UI上で、実際に作成されていることを確認する。
 $ ./install-uj.sh
 ```
 
-### 6. GitLabのtech-exerciseプロジェクトにWebHook追加 (手動)
+### 6. GitLabのtech-exerciseプロジェクトにWebHook追加されていることを確認
 
 * WebHook追加 (tech-exerciseプロジェクトのSettings>Integrations)
 
@@ -76,20 +76,20 @@ $ ./install-uj2.sh
 $ ./install-tekton.sh
 ```
 
-### 9. GitLabのpet-battle-apiプロジェクトにWebHook追加 (手動)
+### 9. GitLabのpet-battle-apiプロジェクトにWebHookが追加されていることを確認
 
 * WebHook追加 (pet-battle-apiプロジェクトのSettings>Integrations)
 ```
 echo https://$(oc -n ${TEAM_NAME}-ci-cd get route webhook --template='{{ .spec.host }}')
 ```
 
-NOTE: WebHookからPipelineを起動すること
+### 10. pet-battle-apiプロジェクトのWebHookを使ってPipelineを起動し、パイプラインが完了することを確認する
 
-### 10. SonarQubeのインストール (TODO: シェルスクリプトにする)
+### 11. SonarQubeのインストール (TODO: シェルスクリプトにする)
 
 *. /install-sonarqube.txtの手順に従ってSonarQubeをデプロイする
 
-#### 11. デプロイ状況の確認
+#### 12. デプロイ状況の確認
 
 ```
 ./show-consoles.sh

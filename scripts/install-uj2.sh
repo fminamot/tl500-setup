@@ -75,4 +75,4 @@ oc rollout status deployment nexus-sonatype-nexus -n ${TEAM_NAME}-ci-cd --timeou
 
 # OpenShift -> Developer View -> Topologyに移動し、 <TEAM_NAME>-testプロジェクトの pet-battle を確認(GUIを開く)
 
-echo "install-uj2 done"
+echo "\ninstall-uj2 done"

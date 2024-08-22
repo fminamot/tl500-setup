@@ -69,6 +69,6 @@ echo "GITLAB_USER=${GITLAB_USER}"
 echo "GITLAB_PASSWORD=${GITLAB_PASSWORD}"
 echo "GITLAB_PAT=${GITLAB_PAT}"
 
-
+echo "\ninstall-basic done"
 
 

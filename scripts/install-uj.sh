@@ -134,5 +134,5 @@ curl -k -X POST \
 # WebHook追加 (tech-exerciseプロジェクトのSettings>Integrations)
 echo "WebHook(tech-exercise) has been set to https://$(oc get route argocd-server --template='{{ .spec.host }}'/api/webhook  -n ${TEAM_NAME}-ci-cd)"
 
-echo "install-uj done"
+echo "\ninstall-uj done"
 
