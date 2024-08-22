@@ -115,5 +115,5 @@ oc rollout status deployment sonarqube-sonarqube -n ${TEAM_NAME}-ci-cd --timeout
 # Sonarqube UIで確認 (admin/admin123)
 echo "Sonarqube UI=https://$(oc get route sonarqube --template='{{ .spec.host }}' -n ${TEAM_NAME}-ci-cd)"
 
-echo "\ninstall-sonarqube done"
+echo "install-sonarqube done"
 # Sonar スキャンによる Tekton パイプラインの拡張

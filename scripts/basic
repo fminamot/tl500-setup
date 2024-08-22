@@ -1,7 +1,4 @@
 
-source gitlab_pat
-gitlab_pat
-
 # 実際に払い出された各種情報をここに設定する
 export USER_NAME=lab01
 export PASSWORD=lab01
@@ -10,5 +7,8 @@ export CLUSTER_DOMAIN=apps.ocp4.example.com
 export GIT_SERVER=gitlab-ce.apps.ocp4.example.com
 export GITLAB_USER=${USER_NAME}
 export GITLAB_PASSWORD=${PASSWORD}
+
+source gitlab_pat
+gitlab_pat
 export GITLAB_PAT=${GITLAB_PAT}
 
