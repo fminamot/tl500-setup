@@ -61,7 +61,7 @@ curl -k -X POST \
   "https://${GIT_SERVER}/api/v4/projects/" -d "{\"namespace_id\": \"${NAMESPACE_ID}\", \"name\": \"${REPO_NAME}\",\"visibility\": \"internal\"}"
 done
   
-source printbasic
+./printbasic.sh
 
 echo "\ninstall-basic done"
 
