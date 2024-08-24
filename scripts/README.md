@@ -1,8 +1,34 @@
 # README
 
+受講者のCodeReady Container内で実行するインストール手順の概要を記す。
+詳細な手順は [1] を参照のこと。
+
 ## INSTRUCTIONS
 
-### 1. basicファイルを編集
+### 1. Worksationのネットワーク設定
+
+TL500 Instructor Guide[2] に従って、受講者のWorksationとOCPを接続する。
+
+### 2. OCPの起動確認
+
+utilityサーバーにsshでログインして、./wait.shスクリプトを実行し、
+OCPの起動が完了していることを確認する。
+
+```
+ssh lab@utilityes
+./wait.sh
+```
+
+### 3. インストールスクリプトの複製
+
+```
+cd /projects
+git clone https://github.com/fminamot/tl500-setup.git
+cd tl500-setup/scripts
+chmod u+x *.sh
+```
+
+### 4. basicファイルを編集
 
 ```
 # 実際に払い出された各種情報をここに設定する
@@ -15,97 +41,21 @@ export GITLAB_USER=${USER_NAME}
 export GITLAB_PASSWORD=${PASSWORD}
 ```
 
-### 2. WebコンソールでGitLab Podが起動していることを確認
-
-* Admin Perspectiveを選択
-* Home > Project において tl500-gitlab を選択
-* Workload > Podを選択
-* すべての Pod が Running であることを確認
-
-### 3. GitLabでtech-exerciseプロジェクト作成
-
-* TerminalでGitLabサーバーのURLを表示
+### 5. インストールスクリプトの実行
 
 ```
-$ source basic
-$ echo "https://${GIT_SERVER}"
+./install-all.sh
 ```
 
-* ブラウザからGitLabのURLを開く
-
-
-### 4. 環境変数の設定とGitLabプロジェクトの作成
-
-```
-$ ./install-basic.sh
-$ source ~/.zshrc
-```
-
-このスクリプトによって、publicな teamX グループを作成し、そのグループの下に2つの internal プロジェクトを作成する。
-GitLab UI上で、実際に作成されていることを確認する。
-
-* tech-exercise
-* pet-battle-api
-
-
-### 5. ArgoCDとUbiquitous-journeyのインストール
-
-```
-$ ./install-uj.sh
-```
-
-### 6. GitLabのtech-exerciseプロジェクトにWebHook追加されていることを確認
-
-* WebHook追加 (tech-exerciseプロジェクトのSettings>Integrations)
-
-```
-echo https://$(oc get route argocd-server --template='{{ .spec.host }}'/api/webhook  -n ${TEAM_NAME}-ci-cd)
-```
-
-### 7. Nexus, Keycloak, PetBattleのインストール
-
-```
-$ ./install-uj2.sh
-```
-* WebコンソールでDeveloper Perspective> Topologyに移動し、 <TEAM_NAME>-testプロジェクトの pet-battle を確認
-
-
-### 8. Tektonのインストール
-
-```
-$ ./install-tekton.sh
-```
-
-### 9. GitLabのpet-battle-apiプロジェクトにWebHookが追加されていることを確認
-
-* WebHook追加 (pet-battle-apiプロジェクトのSettings>Integrations)
-```
-echo https://$(oc -n ${TEAM_NAME}-ci-cd get route webhook --template='{{ .spec.host }}')
-```
-
-### 10. pet-battle-apiプロジェクトのWebHookを使ってPipelineを起動し、パイプラインが完了することを確認する
-
-### 11. SonarQubeのインストール
-
-```
-$ ./install-sonarqube.sh
-```
-
-### 11. Allureのインストール
-
-```
-$ ./install-allure.sh
-```
-
-#### 13. デプロイ状況の確認
-
-```
-./show-consoles.sh
-```
+### 6. パイプラインの実行確認
 
 ```
 ./watch-ci-cd.sh
 ```
+
+[1] TL500技術演習環境事前準備 (Google Docs)
+[2] TL500-Instructor-Guide-2023022210.pdf
+
 
 
 

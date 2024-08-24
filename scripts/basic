@@ -1,4 +1,3 @@
-
 # 実際に払い出された各種情報をここに設定する
 export USER_NAME=lab01
 export PASSWORD=lab01

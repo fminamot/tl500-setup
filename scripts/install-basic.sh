@@ -1,7 +1,5 @@
 #!/bin/zsh
 
-source basic
-
 print_vars () {
         echo "TEAM_NAME=$TEAM_NAME"
         echo "USER_NAME=$USER_NAME"
@@ -42,7 +40,6 @@ create_repos () {
 
 }
 
-gitlab_pat
 export_vars
 create_repos
 print_vars
