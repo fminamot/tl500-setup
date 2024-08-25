@@ -5,11 +5,7 @@
 
 ## INSTRUCTIONS
 
-### 1. Worksationのネットワーク設定
-
-TL500 Instructor Guide[2] に従って、受講者のWorksationとOCPを接続する。
-
-### 2. OCPの起動確認
+### 1. OCPの起動確認
 
 utilityサーバーにsshでログインして、./wait.shスクリプトを実行し、
 OCPの起動が完了していることを確認する。
@@ -18,6 +14,11 @@ OCPの起動が完了していることを確認する。
 ssh lab@utility
 ./wait.sh
 ```
+
+### 2. Worksationのネットワーク設定
+
+TL500 Instructor Guide[2] に従って、受講者のWorksationとOCPを接続する。
+
 
 ### 3. インストールスクリプトの複製
 
