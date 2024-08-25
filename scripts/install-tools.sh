@@ -17,14 +17,17 @@ sudo ./get_helm.sh
 sudo wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/local/bin/yq 
 sudo chmod +x /usr/local/bin/yq
 
+# Maven
+sudo dnf install maven -y
+
 # Tech Exercise
+git config --global user.name "student"
+git config --global user.email "student@redhatlabs.dev"
+
+sudo rm -rf /projects/tech-exercise
+
 sudo mkdir /projects
 sudo chown student:student /projects
 cd /projects
 git clone -b main http://git.apps.ocp4.example.com/rht-labs/tech-exercise
 
-git config --global user.name "student"
-git config --global user.email "student@redhatlabs.dev"
-
-# Maven
-sudo dnf install maven -y
