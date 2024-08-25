@@ -2,6 +2,12 @@
 
 cd /tmp
 
+# OpenShift CLI
+wget https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest-4.10/openshift-client-linux-4.10.67.tar.gz
+tar xvf openshift*.tar.gz
+chmod a+x oc
+sudo mv ./oc /usr/local/bin
+
 # Helm
 curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
 chmod 700 get_helm.sh
@@ -21,4 +27,4 @@ git config --global user.name "student"
 git config --global user.email "student@redhatlabs.dev"
 
 # Maven
-sudo dnf install maven
+sudo dnf install maven -y
