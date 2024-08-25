@@ -59,8 +59,10 @@ export GITLAB_PASSWORD=${PASSWORD}
 ./watch-ci-cd.sh
 ```
 
-[1] TL500技術演習環境事前準備 (Google Docs)
-[2] TL500-Instructor-Guide-2023022210.pdf
+## References
+
+* [1] TL500技術演習環境事前準備 (Google Docs)
+* [2] TL500-Instructor-Guide-2023022210.pdf
 
 
 
