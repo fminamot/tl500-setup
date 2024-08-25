@@ -39,7 +39,7 @@ git add .
 git commit -m  "UPDATED - pet-battle-version to 1.3.1"
 git push origin main
 
-sleep 30
+sleep 60
 
 # webhookがデプロイされまで待つ
 oc rollout status deployment el-gitlab-webhook -n ${TEAM_NAME}-ci-cd --timeout 240s
@@ -58,7 +58,7 @@ curl -k -X POST \
 # GitLab>pet-battle-api>settings>integrationに指定するリンク
 echo "WebHook(pet battle api) has been set to https://$(oc -n ${TEAM_NAME}-ci-cd get route webhook --template='{{ .spec.host }}')"
 
-echo "install-tekton done"
+echo -e "install-tekton done\n\n"
 
 # Pipelines -> Pipelines でパイプラインの実行状況を確認
 #tkn -n ${TEAM_NAME}-ci-cd pr logs -Lf 

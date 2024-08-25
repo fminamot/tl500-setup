@@ -65,7 +65,7 @@ git add .
 git commit -m  "🐩 ADD - pet battle apps 🐩"
 git push
 
-sleep 30
+sleep 60
 
 # Nexusがデプロイされるまで待つ
 oc rollout status deployment nexus-sonatype-nexus -n ${TEAM_NAME}-ci-cd --timeout 300s
@@ -75,4 +75,4 @@ oc rollout status deployment nexus-sonatype-nexus -n ${TEAM_NAME}-ci-cd --timeou
 
 # OpenShift -> Developer View -> Topologyに移動し、 <TEAM_NAME>-testプロジェクトの pet-battle を確認(GUIを開く)
 
-echo "install-uj2 done"
+echo -e "install-uj2 done\n\n"

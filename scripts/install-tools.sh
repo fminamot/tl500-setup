@@ -39,3 +39,4 @@ sudo chown student:student /projects
 cd /projects
 git clone -b main http://git.apps.ocp4.example.com/rht-labs/tech-exercise
 
+echo -n "install-tools.sh done\n\n"

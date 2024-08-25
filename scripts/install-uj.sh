@@ -58,9 +58,6 @@ helm upgrade --install argocd \
   -f /projects/tech-exercise/argocd-values.yaml \
   redhat-cop/gitops-operator --version 0.4.9
   
-
-echo "********** Ubiquitous-journey"
-
 cd /projects/tech-exercise
 git remote set-url origin https://${GITLAB_USER}:${GITLAB_PAT}@${GIT_SERVER}/${TEAM_NAME}/tech-exercise.git
 
@@ -134,5 +131,5 @@ curl -k -X POST \
 # WebHook追加 (tech-exerciseプロジェクトのSettings>Integrations)
 echo "WebHook(tech-exercise) has been set to https://$(oc get route argocd-server --template='{{ .spec.host }}'/api/webhook  -n ${TEAM_NAME}-ci-cd)"
 
-echo "install-uj done"
+echo -e "install-uj done\n\n"
 

@@ -44,6 +44,6 @@ export_vars
 create_repos
 print_vars
 
-echo "install-basic done"
+echo -e "install-basic done\n\n"
 
 
