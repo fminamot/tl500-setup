@@ -1,5 +1,6 @@
 #!/bin/bash
 source basic
+./install-tools.sh
 ./install-basic.sh
 ./install-uj.sh
 ./install-uj2.sh
