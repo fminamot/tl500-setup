@@ -11,3 +11,5 @@ source gitlab_pat
 gitlab_pat
 export GITLAB_PAT=${GITLAB_PAT}
 
+export PATH=$PATH:/home/student/apache-maven-3.9.9/bin
+

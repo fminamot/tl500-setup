@@ -18,7 +18,11 @@ sudo wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd6
 sudo chmod +x /usr/local/bin/yq
 
 # Maven
-sudo dnf install maven -y
+cd ~
+sudo dnf install java-17-openjdk-devel -y
+wget https://dlcdn.apache.org/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.tar.gz
+tar xvfz apache-maven-3.9.9-bin.tar.gz
+export PATH=$PATH:/home/student/apache-maven-3.9.9/bin
 
 # Tech Exercise
 git config --global user.name "student"
