@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 print_vars () {
         echo "TEAM_NAME=$TEAM_NAME"
