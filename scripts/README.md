@@ -26,7 +26,6 @@ TL500 Instructor Guide[2] に従って、受講者のWorksationとOCPを接続�
 以下のコマンドを実行して、インストールスクリプトを利用できるようにする。
 
 ```
-cd /projects
 git clone https://github.com/fminamot/tl500-setup.git
 cd tl500-setup/scripts
 chmod u+x *.sh
