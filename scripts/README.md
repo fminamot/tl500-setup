@@ -1,6 +1,6 @@
 # README
 
-受講者のCodeReady Container内で実行するインストール手順の概要を記す。
+演習環境にC-CDパイプラインをインストール手順の概要を記す。
 詳細な手順は [1] を参照のこと。
 
 ## INSTRUCTIONS
@@ -22,11 +22,26 @@ TL500 Instructor Guide[2] に従って、受講者のWorksationとOCPを接続�
 
 ### 3. インストールスクリプトの複製
 
+このインストールスクリプトは以下の２種類の環境を想定している。
+
+(a) CodeReady Workspacesのターミナルからインストールスクリプトを実行する
+(b) 受講者のWorksationのターミナルからインストールスクリプトを実行する
+
+いずれかのターミナル上で、以下のコマンドを実行して、
+インストールスクリプトを利用できるようにする。
+
 ```
 cd /projects
 git clone https://github.com/fminamot/tl500-setup.git
 cd tl500-setup/scripts
 chmod u+x *.sh
+```
+
+(b)の場合は、oc, yq, helm, mavenなどのツールをWorksation環境にインストールする必要があるため、
+以下のコマンドを実行する。
+
+```
+./install-tools.sh
 ```
 
 ### 4. basicファイルを編集

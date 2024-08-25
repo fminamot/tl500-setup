@@ -10,7 +10,8 @@ cd /projects/pet-battle-api
 # commit ccb51ec より後はChartのバージョンが1.2.2に変更されている。
 git checkout -b main
 git remote remove origin
-git remote add origin https://${GIT_SERVER}/${TEAM_NAME}/pet-battle-api.git
+#git remote add origin https://${GIT_SERVER}/${TEAM_NAME}/pet-battle-api.git
+git remote add origin https://${GITLAB_USER}:${GITLAB_PAT}@${GIT_SERVER}/${TEAM_NAME}/pet-battle-api.git
 git push -u origin main
 
 # Argo CD でパイプラインをクラスターに同期 
