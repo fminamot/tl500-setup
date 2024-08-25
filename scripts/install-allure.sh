@@ -2,6 +2,8 @@
 
 source checkvar
 
+echo -e "install-allure started"
+
 cat << EOF > /tmp/allure-auth.yaml
 apiVersion: v1
 data:
@@ -91,4 +93,4 @@ oc rollout status deployment allure -n ${TEAM_NAME}-ci-cd --timeout 120s
 # Allure UI
 echo "Allure UI=https://$(oc get route allure --template='{{ .spec.host }}' -n ${TEAM_NAME}-ci-cd)/allure-docker-service/projects/pet-battle-api/reports/latest/index.html"
 
-echo -e "install-allure don\n\n"
+echo -e "install-allure don\n"

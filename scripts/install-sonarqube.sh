@@ -2,6 +2,8 @@
 
 source checkvar
 
+echo -e "install-sonarqube started"
+
 cat << EOF > /tmp/sonarqube-auth.yaml
 apiVersion: v1
 data:
@@ -115,5 +117,5 @@ oc rollout status deployment sonarqube-sonarqube -n ${TEAM_NAME}-ci-cd --timeout
 # Sonarqube UIで確認 (admin/admin123)
 echo "Sonarqube UI=https://$(oc get route sonarqube --template='{{ .spec.host }}' -n ${TEAM_NAME}-ci-cd)"
 
-echo -e "install-sonarqube done\n\n"
+echo -e "install-sonarqube done\n"
 # Sonar スキャンによる Tekton パイプラインの拡張

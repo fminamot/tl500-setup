@@ -2,7 +2,7 @@
 
 source checkvar
 
-echo "********** Argo CD"
+echo -e "install-uj started"
 
 # チーム用OCPプロジェクト作成
 oc login --server=https://api.${CLUSTER_DOMAIN##apps.}:6443 -u $USER_NAME -p $PASSWORD
@@ -131,5 +131,5 @@ curl -k -X POST \
 # WebHook追加 (tech-exerciseプロジェクトのSettings>Integrations)
 echo "WebHook(tech-exercise) has been set to https://$(oc get route argocd-server --template='{{ .spec.host }}'/api/webhook  -n ${TEAM_NAME}-ci-cd)"
 
-echo -e "install-uj done\n\n"
+echo -e "install-uj done\n"
 

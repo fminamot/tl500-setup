@@ -40,10 +40,12 @@ create_repos () {
 
 }
 
+echo -e "install-basic started"
+
 export_vars
 create_repos
 print_vars
 
-echo -e "install-basic done\n\n"
+echo -e "install-basic done\n"
 
 

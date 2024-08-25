@@ -2,6 +2,8 @@
 
 source checkvar
 
+echo -e "install-tekton started"
+
 # プロジェクトをfork
 cd /projects
 git clone https://github.com/rht-labs/pet-battle-api.git -b v1.0.0
@@ -58,7 +60,7 @@ curl -k -X POST \
 # GitLab>pet-battle-api>settings>integrationに指定するリンク
 echo "WebHook(pet battle api) has been set to https://$(oc -n ${TEAM_NAME}-ci-cd get route webhook --template='{{ .spec.host }}')"
 
-echo -e "install-tekton done\n\n"
+echo -e "install-tekton done\n"
 
 # Pipelines -> Pipelines でパイプラインの実行状況を確認
 #tkn -n ${TEAM_NAME}-ci-cd pr logs -Lf 
