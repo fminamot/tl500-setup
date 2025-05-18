@@ -6,7 +6,7 @@ echo -e "install-tekton started"
 
 # プロジェクトをfork
 cd /projects
-git clone https://github.com/rht-labs/pet-battle-api.git -b v1.0.0
+git clone https://github.com/fminamot/pet-battle-api.git
 
 cd /projects/pet-battle-api
 # commit ccb51ec より後はChartのバージョンが1.2.2に変更されている。
