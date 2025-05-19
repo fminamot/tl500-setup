@@ -36,6 +36,8 @@ git push
 cd /projects/tech-exercise
 helm upgrade --install uj --namespace ${TEAM_NAME}-ci-cd .
 
+sleep 120
+
 # Pet BattleとPet Battle APIのデプロイ
 
 if [[ $(yq e '.applications[] | select(.name=="pet-battle-api") | length' /projects/tech-exercise/pet-battle/test/values.yaml) < 1 ]]; then
