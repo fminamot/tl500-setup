@@ -36,7 +36,10 @@ git push
 cd /projects/tech-exercise
 helm upgrade --install uj --namespace ${TEAM_NAME}-ci-cd .
 
-sleep 120
+sleep 60
+
+# Nexusがデプロイされるまで待つ
+oc rollout status deployment nexus-sonatype-nexus -n ${TEAM_NAME}-ci-cd --timeout 1200s
 
 # Pet BattleとPet Battle APIのデプロイ
 
@@ -69,10 +72,10 @@ git add .
 git commit -m  "🐩 ADD - pet battle apps 🐩"
 git push
 
-sleep 60
+# sleep 60
 
 # Nexusがデプロイされるまで待つ
-oc rollout status deployment nexus-sonatype-nexus -n ${TEAM_NAME}-ci-cd --timeout 600s
+# oc rollout status deployment nexus-sonatype-nexus -n ${TEAM_NAME}-ci-cd --timeout 600s
 
 # Nexusコンソール (PodがRunningになるまで時間がかかる)
 echo "Nexus UI=https://$(oc get route nexus --template='{{ .spec.host }}' -n ${TEAM_NAME}-ci-cd)"
