@@ -70,7 +70,7 @@ git push
 sleep 60
 
 # Nexusがデプロイされるまで待つ
-oc rollout status deployment nexus-sonatype-nexus -n ${TEAM_NAME}-ci-cd --timeout 300s
+oc rollout status deployment nexus-sonatype-nexus -n ${TEAM_NAME}-ci-cd --timeout 600s
 
 # Nexusコンソール (PodがRunningになるまで時間がかかる)
 echo "Nexus UI=https://$(oc get route nexus --template='{{ .spec.host }}' -n ${TEAM_NAME}-ci-cd)"
